@@ -1,0 +1,87 @@
+<div class="container register">
+    <form [formGroup]="submitForm" (ngSubmit)="submitform()">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Welcome</h3>
+                <input type="button" name="" value="Search" (click)="search()"/><br/>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Registration</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="houseno" placeholder="House Number *"  />
+                                    <div *ngIf="submitted||submitForm.controls['houseno'].touched">
+                                        <div *ngIf="submitForm.controls['houseno'].errors?.required" class="alert-danger">House Number is required</div>
+                                        <div *ngIf="submitForm.controls['houseno'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="ownername" placeholder="Owner Name *" />
+                                    <div *ngIf="submitted||submitForm.controls['ownername'].touched">
+                                        <div *ngIf="submitForm.controls['ownername'].errors?.required" class="alert-danger">Owner Name is required</div>
+                                        <div *ngIf="submitForm.controls['ownername'].errors?.pattern" class="alert-danger">Enter only alphabetic value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="latitute" disabled placeholder="Latitute *"/>
+                                    <div *ngIf="submitted||submitForm.controls['latitute'].touched">
+                                        <div *ngIf="submitForm.controls['latitute'].errors?.required" class="alert-danger">Latitute is required</div>
+                                        <div *ngIf="submitForm.controls['latitute'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="longitute" disabled placeholder="Longitute *"/>
+                                    <div *ngIf="submitted||submitForm.controls['longitute'].touched">
+                                        <div *ngIf="submitForm.controls['longitute'].errors?.required" class="alert-danger">Longitute is required</div>
+                                        <div *ngIf="submitForm.controls['longitute'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                                <input type="button" class="btn btn-outline btn-sm btn-block" value="Get Location" (click)="getLocation()"/>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="housesize" placeholder="House Size in sq. ft. *" />
+                                    <div *ngIf="submitted||submitForm.controls['housesize'].touched">
+                                        <div *ngIf="submitForm.controls['housesize'].errors?.required" class="alert-danger">House Size is required</div>
+                                        <div *ngIf="submitForm.controls['housesize'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="numoffloor" placeholder="Number of floor *"  />
+                                    <div *ngIf="submitted||submitForm.controls['numoffloor'].touched">
+                                        <div *ngIf="submitForm.controls['numoffloor'].errors?.required" class="alert-danger">Number of floor is required</div>
+                                        <div *ngIf="submitForm.controls['numoffloor'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" formControlName="landmark"  placeholder="Landmark *"/>
+                                    <div *ngIf="submitted||submitForm.controls['landmark'].touched">
+                                        <div *ngIf="submitForm.controls['landmark'].errors?.required" class="alert-danger">Landmark is required</div>
+                                        <div *ngIf="submitForm.controls['landmark'].errors?.pattern" class="alert-danger">Enter only alphabetic value</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" formControlName="mobile"  placeholder="Mobile No. *" minlength="10" maxlength="10" name="txtEmpPhone" />
+                                    <div *ngIf="submitted||submitForm.controls['mobile'].touched">
+                                        <div *ngIf="submitForm.controls['mobile'].errors?.required" class="alert-danger">Mobile Number is required</div>
+                                        <div *ngIf="submitForm.controls['mobile'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                    </div>
+                                </div>
+                               
+                               
+                            </div>
+                            
+                            <input type="submit" class="btnRegister"  value="Register"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

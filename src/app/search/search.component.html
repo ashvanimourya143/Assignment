@@ -1,0 +1,174 @@
+<table class="table">
+    
+      <tr>
+        <th scope="col"><button type="button" class="btn btn-light" >S No.</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onhousenosort()">House No.</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Ononeernamesort()">Owner Name</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onhousesizesort()">House Size</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onnumoffloorsort()">Number of Floor</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onlandmarksort()">Landmark</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onlatitutesort()">Latitute</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onlongitutesort()">Longitute</button></th>
+        <th scope="col" ><button type="button" class="btn btn-light" (click)="Onmobilenosort()">Mobile No.</button></th>
+        <th scope="col"><button type="button" class="btn btn-outline-success btn-lg btn-block" (click)="signup()">Registration</button></th>
+        <th scope="col"><button type="button" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" data-target="#modalLRForm">Search</button></th>
+        <th scope="col"><button type="button" class="btn btn-outline-success btn-lg btn-block" (click)="refresh()">Refresh</button></th>
+      </tr>
+   
+    
+        <tr *ngFor="let data of data; let i=index; ">
+          <td>{{i+1}}</td>
+          <td>{{data.houseno}}</td>
+          <td>{{data.ownername}}</td>
+          <td>{{data.housesize}}</td>
+          <td>{{data.numoffloor}}</td>
+          <td>{{data.landmark}}</td>
+          <td>{{data.latitute}}</td>
+          <td>{{data.longitute}}</td>
+          <td>{{data.mobile}}</td>
+          <td scope="col"><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"(click)="Onedit(data,i)">Edit</button></td>
+          <td scope="col"><button type="button" class="btn btn-outline-danger" (click)="Ondelete(i)">Delete</button></td>
+          
+        </tr>
+      
+  </table>
+  <br/>
+  
+
+
+  <div class="container" >
+    
+    <div class="modal fade" id="myModal"#modal>
+
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="container register">
+                <form [formGroup]="submitForm" (ngSubmit)="Onupdate(index)">
+                                    <h2 class="register-heading">Edit</h2>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="houseno" disabled placeholder="House Number *"  />
+                                                <div *ngIf="submitted||submitForm.controls['houseno'].touched">
+                                                    <div *ngIf="submitForm.controls['houseno'].errors?.required" class="alert-danger">House Number is required</div>
+                                                    <div *ngIf="submitForm.controls['houseno'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="ownername" placeholder="Owner Name *" />
+                                                <div *ngIf="submitted||submitForm.controls['ownername'].touched">
+                                                    <div *ngIf="submitForm.controls['ownername'].errors?.required" class="alert-danger">Owner Name is required</div>
+                                                    <div *ngIf="submitForm.controls['ownername'].errors?.pattern" class="alert-danger">Enter only alphabetic value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="housesize" placeholder="House Size in sq. ft. *" />
+                                                <div *ngIf="submitted||submitForm.controls['housesize'].touched">
+                                                    <div *ngIf="submitForm.controls['housesize'].errors?.required" class="alert-danger">House Size is required</div>
+                                                    <div *ngIf="submitForm.controls['housesize'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="numoffloor" placeholder="Number of floor *"  />
+                                                <div *ngIf="submitted||submitForm.controls['numoffloor'].touched">
+                                                    <div *ngIf="submitForm.controls['numoffloor'].errors?.required" class="alert-danger">Number of floor is required</div>
+                                                    <div *ngIf="submitForm.controls['numoffloor'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="latitute" disabled placeholder="Latitute *"/>
+                                                <div *ngIf="submitted||submitForm.controls['latitute'].touched">
+                                                    <div *ngIf="submitForm.controls['latitute'].errors?.required" class="alert-danger">Latitute is required</div>
+                                                    <div *ngIf="submitForm.controls['latitute'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" formControlName="longitute" disabled placeholder="Longitute *"/>
+                                                <div *ngIf="submitted||submitForm.controls['longitute'].touched">
+                                                    <div *ngIf="submitForm.controls['longitute'].errors?.required" class="alert-danger">Longitute is required</div>
+                                                    <div *ngIf="submitForm.controls['longitute'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"  class="form-control" formControlName="landmark"  placeholder="Landmark *"/>
+                                                <div *ngIf="submitted||submitForm.controls['landmark'].touched">
+                                                    <div *ngIf="submitForm.controls['landmark'].errors?.required" class="alert-danger">Landmark is required</div>
+                                                    <div *ngIf="submitForm.controls['landmark'].errors?.pattern" class="alert-danger">Enter only alphabetic value</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"  class="form-control" formControlName="mobile" disabled  placeholder="Mobile No. *" minlength="10" maxlength="10" name="txtEmpPhone" />
+                                                <div *ngIf="submitted||submitForm.controls['mobile'].touched">
+                                                    <div *ngIf="submitForm.controls['mobile'].errors?.required" class="alert-danger">Mobile Number is required</div>
+                                                    <div *ngIf="submitForm.controls['mobile'].errors?.pattern" class="alert-danger">Enter only numeric value</div>
+                                                </div>
+                                            </div>
+                                            <input type="submit" class="btnRegister btn btn-outline-success btn-lg btn-block" value="Update"/>
+                </form>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <div class="modal fade" id="modalLRForm" #modal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-c-tabs">
+  
+          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab">
+                By House No.</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#panel8" role="tab" >
+                By Name</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel9" role="tab">
+                  By Mobile No.</a>
+              </li>
+          </ul>
+  
+          
+          <div class="tab-content">
+            <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+              <div class="modal-body ">
+                <div class="md-form form-lg ">
+                  <input type="text" [(ngModel)]="search" id="modalLRInput10" class="form-control form-control-lg"  placeholder="Enter House No. *">
+                </div>
+                <div class="text-center mt-2">
+                  <button class="btn btn-outline-success btn-lg btn-block" (click)="Onsearch('houseno');" data-dismiss="modal">Search</button>
+                </div>
+              </div>
+            </div>
+           
+            <div class="tab-pane fade" id="panel8" role="tabpanel">
+              <div class="modal-body ">
+                <div class="md-form form-lg ">
+                  <input type="text" [(ngModel)]="search" id="modalLRInput11" class="form-control form-control-lg" placeholder="Enter Name *">
+                </div>
+                <div class="text-center mt-2">
+                  <button class="btn btn-outline-success btn-lg btn-block" (click)="Onsearch('name');" data-dismiss="modal" >Search</button>
+                </div>
+              </div>
+          </div>
+
+          <div class="tab-pane fade" id="panel9" role="tabpanel">
+            <div class="modal-body ">
+              <div class="md-form form-lg ">
+                <input type="text" [(ngModel)]="search" id="modalLRInput12" class="form-control form-control-lg" placeholder="Enter Mobile No. *">
+              </div>
+              <div class="text-center mt-2">
+                <button class="btn btn-outline-success btn-lg btn-block" (click)="Onsearch('mobile');" data-dismiss="modal">Search</button>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+ 
